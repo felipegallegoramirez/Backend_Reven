@@ -9,6 +9,9 @@ const StorageScheme = new mongoose.Schema(
     description: {
         type: String,
       },
+    img_url: {
+        type: String,
+      },
     users: [{
         user_id: {
             type: String,

@@ -10,7 +10,7 @@ const StorageScheme = new mongoose.Schema(
         type: String,
       },
     reward: [{
-        name: {
+        id: {
             type: String,
           },
         name: {
