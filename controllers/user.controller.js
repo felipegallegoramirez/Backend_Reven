@@ -1,4 +1,3 @@
-const Post = require("../models/post");
 const User = require("../models/user");
 const { encrypt } = require("../utils/encript")
 const UserCtrl = {};

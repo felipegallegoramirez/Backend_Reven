@@ -36,8 +36,15 @@ const loginCtrl = async (req, res, next) => {
     user = await User.findByIdAndUpdate(user._id, user)
     await messageLogin(user.email, user._id, x)
     */
+    const tokenJwt = await tokenSign(session);
+    const data = {
+      token: tokenJwt,
+      id: user.id,  
+      name: user.name,
+      rol: user.rol
+    };
   
-    res.status(200).json(session)
+    res.status(200).json(data)
   }
   } catch (e) {
     next(boom.badRequest(e));

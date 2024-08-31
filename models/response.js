@@ -3,28 +3,26 @@ const mongoose = require("mongoose");
 //const mongoosePaginateAggregate = require("mongoose-aggregate-paginate-v2");
 const StorageScheme = new mongoose.Schema(
   {
-    name: {
+    answers: [{
       type: String,
-    },
-    email: {
-      type: String,
-      unique: true,
-      trim: true
-    },
-    password: {
-      type: String,
-    },
-    rol: {
-      type: String,
-    },
-    cedula: {
-      type: String,
-    },
-    code: {
-      type: String,
+    }],
+    calification: {
+      type: Number,
     },
     points: {
+      type: Number,
+    },
+    state: {
       type: String,
+    },
+    user_id: {
+        type: String,
+      },
+    survey_id: {
+    type: String,
+    },
+    events_id: {
+        type: String,
     },
   },
 
@@ -35,4 +33,4 @@ const StorageScheme = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.models.Users || mongoose.model("Users", StorageScheme);
+module.exports = mongoose.models.Response || mongoose.model("Response", StorageScheme);
