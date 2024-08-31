@@ -1,8 +1,5 @@
 const Response = require("../models/response");
-const { encrypt } = require("../utils/encript")
 const ResponseCtrl = {};
-const { messageLogin } = require("../utils/emailprefabs/authemail");
-const { messageRegister } = require("../utils/emailprefabs/registerEmail");
 
 ResponseCtrl.getResponses = async (req, res, next) => {
     try{

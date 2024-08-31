@@ -97,24 +97,24 @@ UserCtrl.putPassword = async (req, res, next) => {
     }
 }
 
-UserCtrl.putPhotoProfile = async (req, res, next) => {
-    try{
-        const image = req.file.filename;
-        const { id } = req.params;
-        const user = await User.findById(id);
+// UserCtrl.putPhotoProfile = async (req, res, next) => {
+//     try{
+//         const image = req.file.filename;
+//         const { id } = req.params;
+//         const user = await User.findById(id);
 
-        if(user.files_id[0] != 'default.png'){
-            await deleteImage(user.files_id[0]);
-        }
-        user.files_id[0] = image;
-        //await uploadImage(image);
-        let save = await User.findByIdAndUpdate(id, user);
+//         if(user.files_id[0] != 'default.png'){
+//             await deleteImage(user.files_id[0]);
+//         }
+//         user.files_id[0] = image;
+//         //await uploadImage(image);
+//         let save = await User.findByIdAndUpdate(id, user);
 
-        res.status(200).send(save);
-    }catch(err){
-        res.status(400).send(err);
-    }
-}
+//         res.status(200).send(save);
+//     }catch(err){
+//         res.status(400).send(err);
+//     }
+// }
 
 
 UserCtrl.editUser = async (req, res, next) => {

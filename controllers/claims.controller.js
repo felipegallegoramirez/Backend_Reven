@@ -1,6 +1,9 @@
 const Claims = require("../models/claims");
 const { messageRegister } = require("../utils/emailprefabs/registerEmail");
 
+
+const ClaimsCtrl = {};
+
 ClaimsCtrl.getClaimss = async (req, res, next) => {
     try{
         const save = await Claims.find();

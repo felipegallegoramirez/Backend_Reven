@@ -4,10 +4,7 @@ const mongoose = require('mongoose')
 
 const dbConnect = () => {
     const DB_URI = process.env.DB_URI || "mongodb://0.0.0.0:27017/GemelasAI"
-    mongoose.connect(DB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: false
-    })  .then((res) => console.log("db is connected"))
+    mongoose.connect(DB_URI)  .then((res) => console.log("db is connected"))
     .catch((err) => console.error(err));
 }
 
