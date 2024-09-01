@@ -29,6 +29,9 @@ const StorageScheme = new mongoose.Schema(
     state: {
         type: Number,
       },
+    user_id :{
+      type: String,
+    },
   },
 
 

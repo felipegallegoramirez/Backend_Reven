@@ -10,5 +10,6 @@ router.post("",checkAuth, claims.createClaims);
 router.put("/claims/:id",checkAuth,claims.editClaims);
 //router.put("/photo/:id",checkAuth(), claims.putPhotoProfile);
 router.delete("/:id",checkAuth, claims.deleteClaims);
+router.get("/claimreward/:id",checkAuth, claims.claimReward);
 
 module.exports = router 

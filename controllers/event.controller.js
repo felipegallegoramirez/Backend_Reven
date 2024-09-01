@@ -1,5 +1,6 @@
 const Event = require("../models/event");
 const EventCtrl = {};
+const User = require("../models/user");
 
 EventCtrl.getEvents = async (req, res, next) => {
     try{
@@ -38,15 +39,23 @@ EventCtrl.createEvent = async (req, res, next) => {
             description,
             users} = req.body;
 
+            let data
+
             const img_url = req.file.filename;
 
-            // ! Falta buscar los usuarios y agregarlos a users
-            // ?  en users es un arreglo de los emails
+            for (const element of users) {
+                let user = await User.findOne({ email: element });
+                data.push({
+                    user_id: user._id,
+                    user_name: user.name,
+                    user_email: element
+                });
+            }
 
         const body = { name,
             email,
             description,
-            users,
+            users:data,
             img_url };
         var save= await Event.create(body);
         res.status(200).send(save)
