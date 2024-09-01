@@ -64,6 +64,28 @@ SurveyCtrl.editSurvey = async (req, res, next) => {
     }
 };
 
+SurveyCtrl.CloneSurvey = async (req, res, next) => {
+    try{
+        const { id } = req.params;
+        const survey = await Survey.findById(id);
+        let i =1
+
+        while (true){
+            // ! esta funcion se podria optimizar muchisimo
+            survey.name = `${survey.name} (${i})` 
+            let test = await Survey.find({ name:survey.name });
+            if(!test){
+                survey._id = ''
+                break
+            }
+        }
+        var save= await Survey.create(body);        
+        res.status(200).send(save)
+    }catch(err){
+        res.status(400).send(err)
+    }
+};
+
 SurveyCtrl.deleteSurvey = async (req, res, next) => {
     try{
         // var survey = await Survey.findById(req.params.id);

@@ -6,6 +6,7 @@ const { uploadimage } = require("../utils/savestorage")
 
 router.get("",checkAuth, survey.getSurveys);
 router.get("/oneSurvey/:id",checkAuth, survey.getSurvey);
+router.get("/cloneSurvey/:id",checkAuth, survey.CloneSurvey);
 router.post("",checkAuth, survey.createSurvey); 
 router.put("/survey/:id",checkAuth,survey.editSurvey);
 //router.put("/photo/:id",checkAuth, survey.putPhotoProfile);

@@ -26,7 +26,7 @@ ResponseCtrl.getResponse = async (req, res, next) => {
 
 ResponseCtrl.SearchResponse = async (req, res, next) => {
     try{
-        const save = await Response.find()
+        await Response.find({ survey_id: req.params.id });
         res.status(200).send(save)
     }catch(err){
         res.status(400).send(err)
