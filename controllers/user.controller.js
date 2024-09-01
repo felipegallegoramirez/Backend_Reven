@@ -58,8 +58,6 @@ UserCtrl.createUser = async (req, res, next) => {
         res.status(400).send(err)
 
     }
-
-
 };
 
 UserCtrl.SendCode = async (req, res, next) => {

@@ -1,6 +1,7 @@
 const Event = require("../models/event");
 const EventCtrl = {};
 const User = require("../models/user");
+const { messageEvent } = require("../utils/emailprefabs/registerEvent")
 
 EventCtrl.getEvents = async (req, res, next) => {
     try{
@@ -50,6 +51,7 @@ EventCtrl.createEvent = async (req, res, next) => {
                     user_name: user.name,
                     user_email: element
                 });
+                await messageEvent (user.email, user.name, name)
             }
 
         const body = { name,

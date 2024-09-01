@@ -1,24 +1,23 @@
 
 const  sendcorreo  = require("../emails");
 
-const messageBoking = (correo, name, fecha,other,id,survey) => {
-    sendcorreo(correo,"Nueva asesoria", 
+const messageEvent = (correo, name, nameEvent) => {
+    sendcorreo(correo,"Registro en PoliNet <3", 
     `
     <div class="sup" style="width: 100%; display: flex; justify-content: center; align-items:center;">
         <img src="cid:unique@kreata.ee" style="width:20%; object-fit:cover;" alt="">
     </div>
 
     <div class="inf" style="text-align: center;">
-    <p style="text-align: justify;width: 50%;margin: auto;margin-top: 50px;"><b>Hola ${name}, </b>Se ha agendado una cita para ${fecha} con ${other}
+    <p style="text-align: justify;width: 50%;margin: auto;margin-top: 50px;"> Coordial salud ${name} has sido registrado en el evento ${nameEvent} No faltes ;D
         <br>
         <br>
         <br>
         <br>
-        <a href="https://polinet.netlify.app/#/Reunion/${id}/">Link de la asesoria</a>
+        A nombre de: ${name}
         <br>
         <br>
-        <b>Recuerda calificar luego de la reunion </b>
-        <a href="https://polinet.netlify.app/#/survey/${survey}/">Link de la asesoria</a>
+        Correo electronico: ${correo}
         <br>
         <br>
         <br>
@@ -32,7 +31,7 @@ const messageBoking = (correo, name, fecha,other,id,survey) => {
 </footer>`,
 [{
     filename: 'logoPolinet.png',
-    path: __dirname + '/logoPolinet.png',
+    path: __dirname + '/logo.png',
     cid: 'unique@kreata.ee' 
 }])
   };
@@ -40,4 +39,4 @@ const messageBoking = (correo, name, fecha,other,id,survey) => {
 
 
 
-  module.exports = {messageBoking};
+  module.exports = {messageEvent};

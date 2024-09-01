@@ -9,7 +9,7 @@ const messageRegister = (correo, name) => {
     </div>
 
     <div class="inf" style="text-align: center;">
-    <p style="text-align: justify;width: 50%;margin: auto;margin-top: 50px;">Hemos detectado un registro en nuestra pagina PoliNet, si no eres tú has caso omiso de este correo
+    <p style="text-align: justify;width: 50%;margin: auto;margin-top: 50px;">Hemos detectado un registro en nuestra pagina Reven, si no eres tú has caso omiso de este correo
         <br>
         <br>
         <br>
@@ -31,7 +31,7 @@ const messageRegister = (correo, name) => {
 </footer>`,
 [{
     filename: 'logoPolinet.png',
-    path: __dirname + '/logoPolinet.png',
+    path: __dirname + '/logo.png',
     cid: 'unique@kreata.ee' 
 }])
   };
