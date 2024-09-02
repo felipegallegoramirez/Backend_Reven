@@ -4,6 +4,6 @@ const {loginUserSchema} = require('../midleware/schemas/user.schema');
 const validatorHandler = require('../midleware/verificatorSchemas')
 const auth = require('../controllers/login.controller');
 
-router.post("/",validatorHandler(loginUserSchema, "body"), auth.loginCtrl);
+router.post("/", auth.loginCtrl);
 
 module.exports = router
