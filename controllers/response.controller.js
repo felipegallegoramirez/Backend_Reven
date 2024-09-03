@@ -1,7 +1,11 @@
 const Response = require("../models/response");
 const Survey = require("../models/survey");
+const Event = require("../models/event");
+const Reward = require("../models/reward");
 const user = require("../models/user");
 const User = require("../models/user");
+const event = require("../models/event");
+const reward = require("../models/reward");
 const ResponseCtrl = {};
 
 ResponseCtrl.getResponses = async (req, res, next) => {
@@ -39,9 +43,23 @@ ResponseCtrl.createResponse = async (req, res, next) => {
         const { 
             answers,
             state,
-            user_id,
             survey_id,
-            events_id } = req.body;
+            events_id,
+            email,
+            name,
+            cedula, } = req.body;
+
+            const userbody = { name,
+                email,
+                name,
+                rol:'User',
+                cedula,
+                points:0};
+
+            var user = await User.findOne({ email: userbody.email });
+            if (!user) {
+                var user = await User.create(userbody)
+            }
 
 
             let survey = await Survey.findById(survey_id)
@@ -64,12 +82,39 @@ ResponseCtrl.createResponse = async (req, res, next) => {
 
             if(!open){
                 state = 'ended'
-                user= await User.findById(user_id)
-                user.points +=  points
-                await User.findByIdAndUpdate(user_id,user)
+
             }else{
                 state = 'open'
             }
+            event = await Event.findById(events_id)
+            if(!event){
+                res.status(400).send({msg:'Evento no encontradp'})
+            }
+            reward = await Reward.findById(event.reward_id)
+
+            let index = reward.users.findIndex(objeto => objeto.user_id === user._id);
+
+            if (index === -1) {
+                reward.users.push({
+                    user_id: user._id,
+                    user_name: user.name,
+                    user_email: user.email,
+                    points: points
+                });
+              } else {
+                reward.users[index]+=points
+            }
+
+
+
+
+            user.points +=  points
+
+
+            await User.findByIdAndUpdate(user._id,user)
+            await reward.findById(reward._id,reward)
+
+            await User.findByIdAndUpdate(user_id,user)
 
             let calification = ( count / survey.data.length) * 100
 
@@ -108,9 +153,27 @@ ResponseCtrl.QualifedResponse = async (req, res, next) => {
         survey.calification = ( count / survey.data.length) * 100
 
         user= await User.findById(response.user_id)
+
+        reward = await Reward.findById(event.reward_id)
+
+        let index = reward.users.findIndex(objeto => objeto.user_id === user._id);
+
+        if (index === -1) {
+            reward.users.push({
+                user_id: user._id,
+                user_name: user.name,
+                user_email: user.email,
+                points: points
+            });
+          } else {
+            reward.users[index]+=points
+        }
+
         user.points +=  points
 
+
         await User.findByIdAndUpdate(user._id,user)
+        await reward.findById(reward._id,reward)
 
         const save = await Response.findByIdAndUpdate(id,response)
 

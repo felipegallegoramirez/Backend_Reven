@@ -36,13 +36,15 @@ SurveyCtrl.createSurvey = async (req, res, next) => {
         const { name,
             description,
             data,
-            points
+            points,
+            event_id
         } = req.body;
 
         const body = { name,
             description,
             data,
-            points
+            points,
+            event_id
 };
         var save= await Survey.create(body);
         res.status(200).send(save)

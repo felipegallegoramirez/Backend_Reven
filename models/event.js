@@ -12,17 +12,9 @@ const StorageScheme = new mongoose.Schema(
     img_url: {
         type: String,
       },
-    users: [{
-        user_id: {
-            type: String,
-        },
-        user_name: {
-            type: String,
-        },
-        user_email: {
-            type: String,
-        },
-    }],
+    reward_id: {
+        type: String,
+      },
   },
 
 

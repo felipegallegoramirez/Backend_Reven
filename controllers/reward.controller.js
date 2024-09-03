@@ -45,7 +45,8 @@ RewardCtrl.createReward = async (req, res, next) => {
             description,
             count,
             price,
-            img_url
+            img_url,
+            users: []
         };
 
         var save= await Reward.create(body);

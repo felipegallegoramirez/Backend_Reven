@@ -4,27 +4,33 @@ const mongoose = require("mongoose");
 const StorageScheme = new mongoose.Schema(
   {
     name: {
-        type: String,
-      },
+      type: String,
+    },
     description: {
-        type: String,
-      },
-    data: [{
+      type: String,
+    },
+    data: [
+      {
         type: {
+          type: String,
+        },
+        options: [
+          {
             type: String,
           },
-        options: [{
-            type: String,
-          }],
+        ],
         answer: {
-            type: Number,
-          },
-    }],
-    points: {
-        type: Number,
+          type: Number,
+        },
       },
+    ],
+    points: {
+      type: Number,
+    },
+    event_id: {
+      type: String,
+    },
   },
-
 
   {
     versionKey: false,
@@ -32,4 +38,5 @@ const StorageScheme = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.models.Claims || mongoose.model("Claims", StorageScheme);
+module.exports =
+  mongoose.models.Claims || mongoose.model("Claims", StorageScheme);
