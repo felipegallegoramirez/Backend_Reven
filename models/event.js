@@ -15,6 +15,9 @@ const StorageScheme = new mongoose.Schema(
     reward_id: {
         type: String,
       },
+    creator_id: {
+        type: String,
+    },
   },
 
 

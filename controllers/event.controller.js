@@ -25,7 +25,7 @@ EventCtrl.getEvent = async (req, res, next) => {
 
 EventCtrl.SearchEvent = async (req, res, next) => {
     try{
-        const save = await Event.find()
+        const save = await Event.find({ creator_id: req.params.id })
         res.status(200).send(save)
     }catch(err){
         res.status(400).send(err)
@@ -38,11 +38,12 @@ EventCtrl.createEvent = async (req, res, next) => {
         const { 
             name,
             description,
-            users} = req.body;
+            } = req.body;
 
             let data
 
             const img_url = req.file.filename;
+            /*
 
             for (const element of users) {
                 let user = await User.findOne({ email: element });
@@ -52,13 +53,15 @@ EventCtrl.createEvent = async (req, res, next) => {
                     user_email: element
                 });
                 await messageEvent (user.email, user.name, name)
-            }
+            }*/
 
         const body = { name,
             email,
             description,
             users:data,
-            img_url };
+            img_url,
+            creator_id
+         };
         var save= await Event.create(body);
         res.status(200).send(save)
     }catch(err){
