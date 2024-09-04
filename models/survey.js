@@ -39,4 +39,4 @@ const StorageScheme = new mongoose.Schema(
 );
 
 module.exports =
-  mongoose.models.Claims || mongoose.model("Claims", StorageScheme);
+  mongoose.models.Survey || mongoose.model("Survey", StorageScheme);
